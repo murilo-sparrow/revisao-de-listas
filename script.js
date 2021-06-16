@@ -6,10 +6,10 @@ var frases = [
 var indice = 0
 
 var frase = document.getElementById('frase')
-frase.innerHTML = frases [0]
+frase.innerHTML = frases[0]
 
-    var butaoVoltar = document.getElementById('voltar')
-    butaoVoltar.disabled = true
+var butaoVoltar = document.getElementById('voltar')
+butaoVoltar.disabled = true
 
 function voltar(elemento) {
     if (indice !== 0) {
@@ -19,7 +19,10 @@ function voltar(elemento) {
         butaoIr.disabled = false
 
         var frase = document.getElementById('frase')
-        frase.innerHTML = frases [indice]
+        frase.innerHTML = frases[indice]
+        if (indice === 0) {
+            elemento.disabled = true
+        }
     } else {
         elemento.disabled = true
     }
@@ -33,9 +36,13 @@ function ir(elemento) {
 
         var butaoVoltar = document.getElementById('voltar')
         butaoVoltar.disabled = false
-        
+
         var frase = document.getElementById('frase')
-        frase.innerHTML = frases [indice]
+        frase.innerHTML = frases[indice]
+
+        if (indice === 2) {
+            elemento.disabled = true
+        }
     } else {
         elemento.disabled = true
     }
