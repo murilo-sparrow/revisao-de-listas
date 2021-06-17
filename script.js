@@ -1,3 +1,9 @@
+var ui = {
+    frase: document.getElementById('frase'),
+    voltar: document.getElementById('voltar'),
+    ir: document.getElementById('ir'),
+}
+
 var frases = [
     'Te desejo',
     'um feliz Natal',
@@ -5,46 +11,29 @@ var frases = [
 ]
 var indice = 0
 
-var frase = document.getElementById('frase')
-frase.innerHTML = frases[0]
 
-var butaoVoltar = document.getElementById('voltar')
-butaoVoltar.disabled = true
-
-function voltar(elemento) {
-    if (indice !== 0) {
-        indice = indice - 1
-
-        var butaoIr = document.getElementById('ir')
-        butaoIr.disabled = false
-
-        var frase = document.getElementById('frase')
-        frase.innerHTML = frases[indice]
-        if (indice === 0) {
-            elemento.disabled = true
-        }
+function atualizar() {
+    ui.frase.innerHTML = frases[indice]
+    if (indice === frases.length - 1) {
+        ui.ir.disabled = true
     } else {
-        elemento.disabled = true
+        ui.ir.disabled = false
     }
-    console.log(indice)
+    if (indice === 0) {
+        ui.voltar.disabled = true
+    } else {
+        ui.voltar.disabled = false
+    }
 }
 
-function ir(elemento) {
-    if (indice !== frases.length - 1) {
-        indice = indice + 1
-        elemento.disabled = false
-
-        var butaoVoltar = document.getElementById('voltar')
-        butaoVoltar.disabled = false
-
-        var frase = document.getElementById('frase')
-        frase.innerHTML = frases[indice]
-
-        if (indice === 2) {
-            elemento.disabled = true
-        }
-    } else {
-        elemento.disabled = true
-    }
-    console.log(indice)
+function ir() {
+    indice++
+    atualizar()
 }
+
+function voltar() {
+    indice--
+    atualizar()
+}
+
+atualizar()
